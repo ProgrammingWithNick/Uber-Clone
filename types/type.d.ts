@@ -1,4 +1,4 @@
-import {TextInputProps, TouchableOpacityProps} from "react-native";
+import { TextInputProps, TouchableOpacityProps } from "react-native";
 
 declare interface Driver {
     driver_id: number;
@@ -68,10 +68,10 @@ declare interface GoogleInputProps {
     containerStyle?: string;
     textInputBackgroundColor?: string;
     handlePress: ({
-                      latitude,
-                      longitude,
-                      address,
-                  }: {
+        latitude,
+        longitude,
+        address,
+    }: {
         latitude: number;
         longitude: number;
         address: string;
@@ -105,19 +105,19 @@ declare interface LocationStore {
     destinationLongitude: number | null;
     destinationAddress: string | null;
     setUserLocation: ({
-                          latitude,
-                          longitude,
-                          address,
-                      }: {
+        latitude,
+        longitude,
+        address,
+    }: {
         latitude: number;
         longitude: number;
         address: string;
     }) => void;
     setDestinationLocation: ({
-                                 latitude,
-                                 longitude,
-                                 address,
-                             }: {
+        latitude,
+        longitude,
+        address,
+    }: {
         latitude: number;
         longitude: number;
         address: string;

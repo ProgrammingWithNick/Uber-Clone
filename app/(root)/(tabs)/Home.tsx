@@ -1,8 +1,8 @@
 import { View, Text, FlatList } from 'react-native'
 import React from 'react'
-import { SignedIn, SignedOut, useUser } from '@clerk/clerk-expo'
-import { Link } from 'expo-router'
+import { useUser } from '@clerk/clerk-expo'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import RideCard from '@/components/RideCard'
 
 const recentHistory = [
   {
@@ -108,10 +108,10 @@ const Home = () => {
   return (
     <SafeAreaView className='bg-general-500'>
       <FlatList
-        data={[recentHistory?.slice(0,5)]}
-        renderItem={({item})=>
-          <RideCard ride={item}  />
-        // <History />
+        data={recentHistory?.slice(0, 5)}
+        renderItem={({ item }) =>
+          <RideCard ride={item} />
+          // <History />
         }
       />
     </SafeAreaView>
