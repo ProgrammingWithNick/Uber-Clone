@@ -78,7 +78,9 @@ const RideCard = ({
                     <Text className="text-lg font-JakartaMedium">
                         Payment Status
                     </Text>
-                    <Text className="text-lg font-JakartaMedium">
+                    <Text className={`text-lg font-JakartaMedium text-gray-500 capitalize
+                    ${payment_status === 'paid' ? 'text-gray-500' : 'text-gray-500'}
+                        `}>
                         {payment_status}
                     </Text>
                 </View>

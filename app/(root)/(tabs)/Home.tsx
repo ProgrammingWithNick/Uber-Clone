@@ -1,8 +1,9 @@
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useUser } from '@clerk/clerk-expo'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import RideCard from '@/components/RideCard'
+import { icons, images } from '@/constants'
 
 const recentHistory = [
   {
@@ -105,14 +106,53 @@ const recentHistory = [
 
 const Home = () => {
   const { user } = useUser();
+  const loading = false;
+  
+  const handleSignOut = () => {};
+
   return (
     <SafeAreaView className='bg-general-500'>
       <FlatList
         data={recentHistory?.slice(0, 5)}
         renderItem={({ item }) =>
-          <RideCard ride={item} />
-          // <History />
-        }
+          <RideCard ride={item} />}
+        className='px-5'
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={{
+          paddingBottom: 100,
+        }}
+        ListEmptyComponent={() => (
+          <View className='flex flex-col items-center justify-center'>
+            {!loading ? (
+              <>
+                <Image
+                  source={images.noResult}
+                  className='w-40 h-40'
+                  alt='No recent rides found'
+                  resizeMode='contain'
+                />
+                <Text className='text-sm' >No recent rides found</Text>
+              </>
+            ) : (
+              <ActivityIndicator
+                size="small"
+                color="#000"
+              />
+            )}
+          </View>
+        )}
+        ListHeaderComponent={() => (
+          <>
+            <View className='flex flex-row items-center justify-between my-5'>
+              <Text className='text-xl font-JakartaExtraBold'>Welcome {user?.firstName || user?.emailAddresses[0].emailAddress} 👋</Text>
+              <TouchableOpacity>
+                <Image
+                source={icons.out}
+                />
+              </TouchableOpacity>
+            </View>
+          </>
+        )}
       />
     </SafeAreaView>
   )
