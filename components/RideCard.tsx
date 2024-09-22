@@ -24,13 +24,13 @@ const RideCard = ({
                     className="w-[80px] h-[90px] rounded-lg"
                 />
 
-                <View className="flex flex-col flex-1 mx-5 gap-y-5">
+                <View className="flex flex-col flex-1 mx-5 gap-y-4">
                     <View className="flex flex-row items-center gap-x-2">
                         <Image
                             source={icons.to}
                             className="w-5 h-5"
                         />
-                        <Text className="text-lg font-JakartaMedium"
+                        <Text className="text-base font-JakartaMedium"
                             numberOfLines={1}
                         >{origin_address}</Text>
                     </View>
@@ -40,7 +40,7 @@ const RideCard = ({
                             source={icons.point}
                             className="w-5 h-5"
                         />
-                        <Text className="text-lg font-JakartaMedium"
+                        <Text className="text-base font-JakartaMedium"
                             numberOfLines={1}
                         >{destination_address}</Text>
                     </View>
@@ -49,37 +49,37 @@ const RideCard = ({
 
             <View className="flex flex-col items-start justify-center w-full p-3 mt-5 rounded-lg bg-general-500">
                 <View className="flex flex-row items-center justify-between w-full mb-5">
-                    <Text className="text-lg font-JakartaMedium">
+                    <Text className="text-base font-JakartaMedium">
                         Date & Time
                     </Text>
-                    <Text className="text-lg font-JakartaMedium">
+                    <Text className="text-base font-JakartaMedium">
                         {formatDate(created_at)}, {formatTime(ride_time)}
                     </Text>
                 </View>
 
                 <View className="flex flex-row items-center justify-between w-full mb-5">
-                    <Text className="text-lg font-JakartaMedium">
+                    <Text className="text-base font-JakartaMedium">
                         Driver
                     </Text>
-                    <Text className="text-lg font-JakartaMedium">
+                    <Text className="text-base font-JakartaMedium">
                         {driver.first_name} {driver.last_name}
                     </Text>
                 </View>
 
                 <View className="flex flex-row items-center justify-between w-full mb-5">
-                    <Text className="text-lg font-JakartaMedium">
+                    <Text className="text-base font-JakartaMedium">
                         Car Seats
                     </Text>
-                    <Text className="text-lg font-JakartaMedium">
+                    <Text className="text-base font-JakartaMedium">
                         {driver.car_seats}
                     </Text>
                 </View>
                 <View className="flex flex-row items-center justify-between w-full mb-5">
-                    <Text className="text-lg font-JakartaMedium">
+                    <Text className="text-base font-JakartaMedium">
                         Payment Status
                     </Text>
-                    <Text className={`text-lg font-JakartaMedium text-gray-500 capitalize
-                    ${payment_status === 'paid' ? 'text-gray-500' : 'text-gray-500'}
+                    <Text className={`text-base font-JakartaMedium text-gray-500 capitalize
+                    ${payment_status === 'paid' ? 'text-green-500' : 'text-gray-500'}
                         `}>
                         {payment_status}
                     </Text>

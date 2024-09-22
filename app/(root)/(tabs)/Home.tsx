@@ -4,6 +4,7 @@ import { useUser } from '@clerk/clerk-expo'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import RideCard from '@/components/RideCard'
 import { icons, images } from '@/constants'
+import GoogleTextInput from '@/components/GoogleTextInput'
 
 const recentHistory = [
   {
@@ -107,8 +108,9 @@ const recentHistory = [
 const Home = () => {
   const { user } = useUser();
   const loading = false;
-  
-  const handleSignOut = () => {};
+
+  const handleSignOut = () => { };
+  const handleDestinationPress = () => { };
 
   return (
     <SafeAreaView className='bg-general-500'>
@@ -144,13 +146,23 @@ const Home = () => {
         ListHeaderComponent={() => (
           <>
             <View className='flex flex-row items-center justify-between my-5'>
-              <Text className='text-xl font-JakartaExtraBold'>Welcome {user?.firstName || user?.emailAddresses[0].emailAddress} 👋</Text>
-              <TouchableOpacity>
+              <Text className='text-lg capitalize font-JakartaExtraBold'>
+                Welcome{", "}
+                {user?.firstName || user?.emailAddresses[0].emailAddress.split('@')[0]} {" "} 👋</Text>
+              <TouchableOpacity
+                onPress={handleSignOut}
+                className='items-center justify-center w-10 h-10 bg-white rounded-full'
+              >
                 <Image
-                source={icons.out}
+                  source={icons.out}
                 />
               </TouchableOpacity>
             </View>
+            <GoogleTextInput
+              icon={icons.search}
+              containerStyle=" bg-white shadow-md shadow-neutral-300"
+              handlePress={handleDestinationPress}
+            />
           </>
         )}
       />
