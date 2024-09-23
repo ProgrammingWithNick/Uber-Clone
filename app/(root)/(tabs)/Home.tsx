@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import RideCard from '@/components/RideCard'
 import { icons, images } from '@/constants'
 import GoogleTextInput from '@/components/GoogleTextInput'
+import Map from '@/components/Map'
 
 const recentHistory = [
   {
@@ -163,6 +164,18 @@ const Home = () => {
               containerStyle=" bg-white shadow-md shadow-neutral-300"
               handlePress={handleDestinationPress}
             />
+
+            <>
+              <Text className='mt-5 mb-5 text-xl font-JakartaBold'>
+                your current location
+              </Text>
+              <View className='flex flex-row items-center bg-transparent h-[300px]'>
+                <Map />
+              </View>
+            </>
+            <Text className='mt-5 mb-5 text-xl font-JakartaBold'>
+              Recent Rides
+            </Text>
           </>
         )}
       />
