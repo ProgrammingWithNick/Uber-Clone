@@ -1,11 +1,12 @@
 import { View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useUser } from '@clerk/clerk-expo'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import RideCard from '@/components/RideCard'
 import { icons, images } from '@/constants'
 import GoogleTextInput from '@/components/GoogleTextInput'
 import Map from '@/components/Map'
+import { useLocationStore } from '@/Store'
 
 const recentHistory = [
   {
@@ -107,11 +108,18 @@ const recentHistory = [
 ]
 
 const Home = () => {
+  const { setUserLocation, setDestinationLocation } = useLocationStore();
   const { user } = useUser();
   const loading = false;
 
+  const [hasPermissions, setHasPermissions] = useState(false);
+
   const handleSignOut = () => { };
   const handleDestinationPress = () => { };
+
+  useEffect(() => {
+    
+  })
 
   return (
     <SafeAreaView className='bg-general-500'>
