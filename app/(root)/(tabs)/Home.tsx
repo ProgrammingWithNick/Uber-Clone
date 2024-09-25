@@ -1,4 +1,5 @@
-import { View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, Image, ActivityIndicator, TouchableOpacity, } from 'react-native'
+import * as Location from 'expo-location'
 import React, { useEffect, useState } from 'react'
 import { useUser } from '@clerk/clerk-expo'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -118,8 +119,20 @@ const Home = () => {
   const handleDestinationPress = () => { };
 
   useEffect(() => {
+    const requestLocation = async()=>{
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status === 'granted') {
+        setHasPermissions(false);
+        return;
+      }
+    };
+    let location = await Location.getCurrentPositionAsync();
     
-  })
+    const address = await Location.reverseGeocodeAsync({
+      latitude: location.coords?.latitude!,
+    })
+    requestLocation();
+  },[]);
 
   return (
     <SafeAreaView className='bg-general-500'>
