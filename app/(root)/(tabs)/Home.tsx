@@ -119,20 +119,28 @@ const Home = () => {
   const handleDestinationPress = () => { };
 
   useEffect(() => {
-    const requestLocation = async()=>{
+    const requestLocation = async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status === 'granted') {
         setHasPermissions(false);
         return;
       }
+
+      let location = await Location.getCurrentPositionAsync();
+
+      const address = await Location.reverseGeocodeAsync({
+        latitude: location.coords?.latitude!,
+        longitude: location.coords?.longitude!
+      });
+
+      setUserLocation({
+        latitude: location.coords?.latitude!,
+        longitude: location.coords?.longitude!,
+        address: `${address[0].name}, ${address[0].region}`
+      });
     };
-    let location = await Location.getCurrentPositionAsync();
-    
-    const address = await Location.reverseGeocodeAsync({
-      latitude: location.coords?.latitude!,
-    })
     requestLocation();
-  },[]);
+  }, []);
 
   return (
     <SafeAreaView className='bg-general-500'>
